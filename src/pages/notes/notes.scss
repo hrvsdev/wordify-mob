@@ -26,13 +26,13 @@
     &:hover {
       background-color: #e7f5ff;
     }
-    img {
+    svg {
       width: 24px;
       margin-right: 20px;
     }
   }
 
-  .notes-grid-wrapper {
+  .notes-grid-wrapper.large-screen {
     display: flex;
     flex-direction: column;
     row-gap: 16px;
@@ -94,3 +94,53 @@ header {
     align-items: center;
   }
 }
+
+.notes-grid-wrapper.small-screen {
+  display: flex;
+  column-gap: 15px;
+  padding: 15px;
+  .note-wrapper {
+    background-color: #f6f6f6;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    break-inside: avoid;
+    flex-direction: column;
+    padding: 16px 16px;
+    row-gap: 6px;
+    &:hover {
+      background-color: #e7f5ff;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 600;
+      color: black;
+    }
+    .description {
+      font-size: 15px;
+      color: rgba(0, 0, 0, 0.8);
+    }
+    .note-bottom-wrapper {
+      display: flex;
+      color: rgba(0, 0, 0, 0.7);
+      font-size: 13px;
+      column-gap: 6px;
+      .time,
+      .category {
+        letter-spacing: 0.7px;
+      }
+    }
+  }
+}
+
+// @media only screen and (min-width: 600px) {
+//     .notes-grid-wrapper.small-screen{
+//         columns: 3;
+//     }
+// }
+
+// @media only screen and (min-width: 800px) {
+//     .notes-grid-wrapper.small-screen{
+//         columns: 4;
+//     }
+// }

@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { Plus } from "tabler-icons-react";
-import NoteGrid from "./components/NoteGrid";
+import Masonry from "react-masonry-css";
+import Header from "./components/Header";
+import { NoteGridLS, NoteGridSS } from "./components/NoteGrid";
 import "./notes.scss";
 
 export function NotesLargeScreen() {
@@ -13,11 +15,16 @@ export function NotesLargeScreen() {
         <Plus />
         <p>Add a new note</p>
       </NavLink>
-      <NoteGrid />
+      <NoteGridLS />
     </div>
   );
 }
 
 export function NotesSmallScreen() {
-  return <NoteGrid />;
+  return (
+    <>
+      <Header />
+      <NoteGridSS />
+    </>
+  );
 }
