@@ -6,14 +6,13 @@ import { FolderPlus } from "tabler-icons-react";
 import { Plus } from "tabler-icons-react";
 
 export default function CreateFolder() {
-  // Types
 
   // New folder input state
   const [folderName, setFolderName] = useState("");
 
   // Refs
-  const addFolderRef = useRef<HTMLInputElement>(null);
-  const addFolderInputRef = useRef<HTMLInputElement>(null);
+  const addFolderRef = useRef(null);
+  const addFolderInputRef = useRef(null);
 
   // Showing input box for folder
   const addFolderFunc = () => {

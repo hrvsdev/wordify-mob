@@ -2,13 +2,12 @@ import CreateFolder from "./folders/CreateFolder";
 import Folders from "./folders";
 import { FolderButton } from "./folders";
 
-type Props = {};
 
-export default function Middle({}: Props): JSX.Element {
+export default function Middle() {
   return (
     <div className="middle-sec">
       <FolderButton _id="/all" name="All notes" />
-      <Folders folders={[{ name: "anything", _id: "none" }]} />
+      <Folders folders={[]} />
       <CreateFolder />
     </div>
   );

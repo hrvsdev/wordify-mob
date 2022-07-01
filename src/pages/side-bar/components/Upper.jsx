@@ -1,9 +1,8 @@
 import { Avatar } from "@mantine/core";
 import { Search } from "tabler-icons-react";
 
-type Props = {};
 
-export default function Header({}: Props) {
+export default function Upper() {
   return (
     <div className="upper-sec">
       <div className="user-info-wrapper">
