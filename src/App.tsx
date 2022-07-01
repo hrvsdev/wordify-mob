@@ -1,9 +1,14 @@
-import SideBar from "./pages/side-bar";
+import { Routes, Route } from "react-router-dom";
+
+import Home from "./pages/home";
+import "./globals.scss";
 
 type Props = {};
 
 export default function App({}: Props): JSX.Element {
   return (
-    <SideBar/>
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>
   );
 }
