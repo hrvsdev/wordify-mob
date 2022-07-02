@@ -4,7 +4,7 @@ import { Menu2 } from "tabler-icons-react";
 
 import { Context } from "../../../Context";
 
-export default function Header() {
+export default function HeaderSS() {
   const { sideBarOpened, setSideBarOpened } = useContext(Context);
 
   return (

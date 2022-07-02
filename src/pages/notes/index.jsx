@@ -1,7 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { Plus } from "tabler-icons-react";
-import Masonry from "react-masonry-css";
-import Header from "./components/Header";
+
+import HeaderSS from "./components/HeaderSS";
+import AddNoteButtonSS from "./components/AddNoteButtonSS"
 import { NoteGridLS, NoteGridSS } from "./components/NoteGrid";
 import "./notes.scss";
 
@@ -22,9 +23,10 @@ export function NotesLargeScreen() {
 
 export function NotesSmallScreen() {
   return (
-    <>
-      <Header />
+    <div className="middle-side-ss">
+      <HeaderSS />
       <NoteGridSS />
-    </>
+      <AddNoteButtonSS/>
+    </div>
   );
 }
