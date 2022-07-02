@@ -1,11 +1,10 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate, useParams } from "react-router-dom";
 import MQ from "react-responsive";
 
 import ContextProvider from "./Context";
 import Home from "./pages/home";
-import { NotesLargeScreen, NotesSmallScreen } from "./pages/notes";
+import { NotesLargeScreen } from "./pages/notes";
 import SingleNote from "./pages/single-note";
-
 
 export default function App() {
   return (
@@ -26,9 +25,9 @@ export default function App() {
       <MQ maxWidth={1000}>
         <Routes>
           <Route path="/" element={<Home />}>
-            <Route index element={<NotesSmallScreen />}/>
-            <Route path=":folder" element={<NotesSmallScreen />}/>
-            <Route path=":folder/:note" element={<SingleNote />}/>
+            <Route index element={<NotesLargeScreen />} />
+            <Route path=":folder" element={<NotesLargeScreen />} />
+            <Route path=":folder/:note" element={<SingleNote />} />
           </Route>
         </Routes>
       </MQ>

@@ -9,16 +9,8 @@ import "./home.scss";
 
 export default function Home() {
 
-  const navigate = useNavigate()
-  const {folder} = useParams()
-
   const { sideBarOpened, setSideBarOpened } = useContext(Context);
-
-  useEffect(() => {
-    if(!folder) navigate("all")
-  }, [])
   
-
   return (
     <>
       <MQ minWidth={1000}>
