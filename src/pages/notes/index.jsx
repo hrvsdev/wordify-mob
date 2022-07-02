@@ -1,5 +1,4 @@
-import { NavLink, Outlet, useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { NavLink, Outlet } from "react-router-dom";
 import { Plus } from "tabler-icons-react";
 import MQ from "react-responsive";
 
@@ -8,14 +7,7 @@ import AddNoteButtonSS from "./components/AddNoteButtonSS";
 import { NoteGridLS, NoteGridSS } from "./components/NoteGrid";
 import "./notes.scss";
 
-export function NotesLargeScreen() {
-  const navigate = useNavigate();
-  const { folder } = useParams();
-
-  useEffect(() => {
-    if (!folder) navigate("/all");
-  }, []);
-
+export default function Notes() {
   return (
     <>
       <MQ minWidth={1000}>
@@ -41,8 +33,3 @@ export function NotesLargeScreen() {
     </>
   );
 }
-
-// export function NotesSmallScreen() {
-//   return (
-//   );
-// }

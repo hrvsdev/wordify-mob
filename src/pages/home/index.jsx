@@ -8,15 +8,21 @@ import { Context } from "../../Context";
 import "./home.scss";
 
 export default function Home() {
+  const navigate = useNavigate();
+  const { folder } = useParams();
 
   const { sideBarOpened, setSideBarOpened } = useContext(Context);
-  
+
+  useEffect(() => {
+    if (!folder) navigate("/all");
+  }, []);
+
   return (
     <>
       <MQ minWidth={1000}>
         <main className="large-screen">
           <SideBar />
-          <Outlet/>
+          <Outlet />
         </main>
       </MQ>
       <MQ maxWidth={1000}>
