@@ -1,21 +1,30 @@
-import React, { useState, useContext } from "react";
-import MQ from "react-responsive";
+import { useContext, useEffect } from "react";
+import { Outlet, useParams, useNavigate } from "react-router-dom";
 import { Drawer } from "@mantine/core";
+import MQ from "react-responsive";
 
 import SideBar from "../side-bar";
-import { NotesLargeScreen, NotesSmallScreen } from "../notes";
 import { Context } from "../../Context";
 import "./home.scss";
 
 export default function Home() {
+
+  const navigate = useNavigate()
+  const {folder} = useParams()
+
   const { sideBarOpened, setSideBarOpened } = useContext(Context);
+
+  useEffect(() => {
+    if(!folder) navigate("all")
+  }, [])
+  
 
   return (
     <>
       <MQ minWidth={1000}>
         <main className="large-screen">
           <SideBar />
-          <NotesLargeScreen/>
+          <Outlet/>
         </main>
       </MQ>
       <MQ maxWidth={1000}>
@@ -26,7 +35,7 @@ export default function Home() {
           >
             <SideBar />
           </Drawer>
-          <NotesSmallScreen />
+          <Outlet />
         </main>
       </MQ>
     </>

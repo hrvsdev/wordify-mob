@@ -1,5 +1,5 @@
 import "./single-note.scss";
 
 export default function index() {
-  return <div>index</div>;
+  return <div>Single Note</div>;
 }

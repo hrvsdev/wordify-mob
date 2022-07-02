@@ -4,8 +4,9 @@ import Masonry from "react-masonry-css";
 import { useLongPress } from 'use-long-press'
 
 function Note({ notes, content, children }) {
+
   return (
-    <NavLink to="/random" className="note-wrapper">
+    <NavLink to="random" className="note-wrapper">
       <p className="title">Note Title</p>
       <p className="description">{children}</p>
       <div className="note-bottom-wrapper">
