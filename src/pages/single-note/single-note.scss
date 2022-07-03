@@ -68,29 +68,94 @@
       }
     }
   }
+}
 
-  .editor-wrapper {
-    flex: 1;
+.single-note-wrapper-ls {
+  padding: 20px 0px;
+  display: flex;
+  width: calc(100% - 530px);
+  flex-direction: column;
+  .upper-sec {
+    padding: 0 30px;
+    height: 68px;
     display: flex;
-    align-items: stretch;
-    .ProseMirror {
-      padding: 8px 15px;
-      width: 100%;
-      p.is-editor-empty:first-child::before {
-        color: #999;
-        content: attr(data-placeholder);
-        float: left;
-        height: 0;
-        pointer-events: none;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    .title-wrapper {
+      input {
+        all: unset;
+        font-weight: 600;
+        font-size: 35px;
+        width: 100%;
+        &::placeholder {
+          color: black;
+          opacity: 0.8;
+        }
       }
+    }
+  }
 
-      a {
-        color: #0496ff;
+  .note-info {
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+    margin-bottom: 24px;
+    div {
+      display: flex;
+      flex-direction: row;
+      .info-title {
+        width: 120px;
+        opacity: 0.8;
+      }
+      p {
+        font-size: 14px;
+      }
+      .info {
+        opacity: 0.9;
       }
     }
-    .ProseMirror-focused {
-      outline: none;
+    .category-wrapper {
+      margin-bottom: 5px;
+      font-size: 16px;
+      font-weight: 500;
+      input {
+        all: unset;
+        &::placeholder {
+          color: black;
+          opacity: 0.8;
+        }
+      }
     }
+  }
+  .editor-wrapper{
+    padding: 0 22px;
+  }
+}
+
+.editor-wrapper {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  .ProseMirror {
+    padding: 8px 15px;
+    width: 100%;
+    p.is-editor-empty:first-child::before {
+      color: #999;
+      content: attr(data-placeholder);
+      float: left;
+      height: 0;
+      pointer-events: none;
+    }
+
+    a {
+      color: #0496ff;
+    }
+  }
+  .ProseMirror-focused {
+    outline: none;
   }
 }
 
@@ -98,6 +163,11 @@
   display: flex;
   overflow-x: scroll;
   scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   .block-wrapper {
     display: flex;
     align-items: center;
@@ -155,9 +225,10 @@
 }
 
 .menu-bar.ls {
+  border-top: 1px solid #e9ecef;
+  border-bottom: 1px solid #e9ecef;
   justify-content: flex-start;
-  padding: 14px;
-  padding-left: 40px;
+  padding: 14px 14px 14px 30px;
   column-gap: 20px;
   button {
     padding: 4px;
@@ -166,7 +237,7 @@
 
 .menu-bar.ss {
   justify-content: space-between;
-  button{
+  button {
     padding: 10px;
   }
   svg {
