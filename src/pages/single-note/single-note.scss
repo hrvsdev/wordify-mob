@@ -1,0 +1,35 @@
+.single-note-wrapper-ss {
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    .icon-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
+      border-radius: 50%;
+      background-color: white;
+      transition: all 200ms ease;
+      &:active {
+        background-color: rgb(241, 241, 241);
+        svg {
+          transform: scale(1.1);
+        }
+      }
+    }
+    .right-side {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      column-gap: 15px;
+      .delete > svg {
+        width: 26px;
+        height: 26px;
+        stroke-width: 10;
+        stroke: black;
+      }
+    }
+  }
+}

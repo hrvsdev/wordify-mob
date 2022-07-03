@@ -1,5 +1,10 @@
+import Header from "./components/Header";
 import "./single-note.scss";
 
 export default function index() {
-  return <div>Single Note</div>;
+  return (
+    <div className="single-note-wrapper-ss">
+      <Header />
+    </div>
+  );
 }
