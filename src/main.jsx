@@ -3,13 +3,14 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import Loader from "./Loader";
 import "./globals.scss";
+import App from "./App"
 
-const App = React.lazy(() => import("./App"));
+// const App = React.lazy(() => import("./App"));
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <Suspense fallback={<Loader/>}>
+    {/* <Suspense fallback={<Loader/>}> */}
       <App />
-    </Suspense>
+    {/* </Suspense> */}
   </BrowserRouter>
 );

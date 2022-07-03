@@ -8,7 +8,6 @@ export default function Middle() {
     <div className="middle-sec">
       <FolderButton _id="all" name="All notes" />
       <FolderButton _id="/personal" name="Personal" />
-      <FolderButton _id="/work" name="Work" />
       <Folders folders={[]} />
       <CreateFolder />
     </div>
