@@ -1,27 +1,24 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Check, DotsVertical } from "tabler-icons-react";
+import { Check, DotsVertical, InfoCircle } from "tabler-icons-react";
 import { AiOutlineDelete } from "react-icons/ai";
 
 import { Context } from "../../../Context";
 
-export default function HeaderSS() {
+export default function HeaderSS({ handleSave }) {
   const navigate = useNavigate();
   const {} = useContext(Context);
 
-  const handleBack = () => {
-    setTimeout(() => {
-      navigate(-1);
-    }, 200);
-  };
-
   return (
     <header>
-      <div className="arrow icon-wrapper" onClick={handleBack}>
+      <div className="arrow icon-wrapper" onClick={handleSave}>
         <Check size={30} />
       </div>
       <div className="right-side">
+        <div className="info icon-wrapper">
+          <InfoCircle size={26}/>
+        </div>
         <div className="delete icon-wrapper">
           <AiOutlineDelete />
         </div>

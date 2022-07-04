@@ -20,6 +20,9 @@
       border-radius: 50%;
       background-color: white;
       transition: all 200ms ease;
+      svg {
+        transition: all 200ms ease;
+      }
       &:active {
         background-color: rgb(241, 241, 241);
         svg {
@@ -93,6 +96,40 @@
         &::placeholder {
           color: black;
           opacity: 0.8;
+        }
+      }
+    }
+    .icons-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      column-gap: 15px;
+      .delete > svg {
+        width: 26px;
+        height: 26px;
+        stroke-width: 10;
+        stroke: black;
+      }
+      .icon-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        color: #2c2c2c;
+        border-radius: 50%;
+        background-color: white;
+        transition: all 200ms ease;
+        cursor: pointer;
+        svg {
+          transition: all 100ms ease;
+        }
+        &:hover {
+          background-color: rgb(241, 241, 241);
+        }
+        &:active {
+          svg {
+            transform: scale(1.1);
+          }
         }
       }
     }

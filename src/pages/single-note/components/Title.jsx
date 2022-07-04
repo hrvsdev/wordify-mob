@@ -1,11 +1,23 @@
-import MQ from "react-responsive";
+import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { Context } from "../../../Context";
+import MQ from "react-responsive";
 
-import Header from "./Header"
+import { Check, DotsVertical, InfoCircle } from "tabler-icons-react";
+import { AiOutlineDelete } from "react-icons/ai";
+
+import { Context } from "../../../Context";
+import Header from "./Header";
 
 export default function Title() {
   const { title, setTitle, category, setCategory } = useContext(Context);
+
+  const navigate = useNavigate();
+
+  const handleSave = () => {
+    setTimeout(() => {
+      navigate(-1);
+    }, 200);
+  };
 
   return (
     <>
@@ -20,6 +32,17 @@ export default function Title() {
                 setTitle(e.target.value);
               }}
             />
+          </div>
+          <div className="icons-wrapper">
+            <div className="arrow icon-wrapper" onClick={handleSave}>
+              <Check size={30} />
+            </div>
+            <div className="delete icon-wrapper">
+              <AiOutlineDelete />
+            </div>
+            <div className="menu icon-wrapper">
+              <DotsVertical size={27} />
+            </div>
           </div>
         </div>
         <div className="note-info">
@@ -47,7 +70,7 @@ export default function Title() {
         </div>
       </MQ>
       <MQ maxWidth={1000}>
-      <Header/>
+        <Header handleSave={handleSave} />
         <div className="note-data-wrapper">
           <div className="title-wrapper">
             <input
