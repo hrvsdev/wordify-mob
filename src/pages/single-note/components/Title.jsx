@@ -2,6 +2,8 @@ import MQ from "react-responsive";
 import { useContext } from "react";
 import { Context } from "../../../Context";
 
+import Header from "./Header"
+
 export default function Title() {
   const { title, setTitle, category, setCategory } = useContext(Context);
 
@@ -45,6 +47,7 @@ export default function Title() {
         </div>
       </MQ>
       <MQ maxWidth={1000}>
+      <Header/>
         <div className="note-data-wrapper">
           <div className="title-wrapper">
             <input

@@ -20,6 +20,9 @@ export default function Editor() {
       setContent(editor.getHTML());
     },
 
+    onCreate: ({editor}) => {
+    },
+
     content: content,
 
     extensions: [

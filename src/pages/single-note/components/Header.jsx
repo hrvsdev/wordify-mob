@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ArrowLeft, DotsVertical } from "tabler-icons-react";
+import { Check, DotsVertical } from "tabler-icons-react";
 import { AiOutlineDelete } from "react-icons/ai";
 
 import { Context } from "../../../Context";
@@ -19,7 +19,7 @@ export default function HeaderSS() {
   return (
     <header>
       <div className="arrow icon-wrapper" onClick={handleBack}>
-        <ArrowLeft size={30} />
+        <Check size={30} />
       </div>
       <div className="right-side">
         <div className="delete icon-wrapper">

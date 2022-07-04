@@ -1,7 +1,6 @@
 import MQ from "react-responsive";
 import { useContext } from "react";
 
-import Header from "./components/Header";
 import Title from "./components/Title";
 import Editor from "./components/Editor";
 
@@ -22,7 +21,6 @@ export default function index() {
       </MQ>
       <MQ maxWidth={1000}>
         <div className="single-note-wrapper-ss">
-          <Header />
           <Title />
           <Editor />
         </div>
