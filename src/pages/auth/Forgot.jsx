@@ -2,10 +2,10 @@ import { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import WordifyIcon from "../../assets/auth/wordify";
-import PasswordIcon from "../../assets/auth/password";
-import EyeIcon from "../../assets/auth/eye";
-import EyeOffIcon from "../../assets/auth/eyeOff";
+import WordifyIcon from "../../assets/auth/Wordify";
+import PasswordIcon from "../../assets/auth/Password";
+import EyeIcon from "../../assets/auth/Eye";
+import EyeOffIcon from "../../assets/auth/EyeOff";
 
 import { Context } from "../../Context";
 import { isPassWeak } from "../../utils/auth.utils";

@@ -2,15 +2,15 @@ import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import WordifyIcon from "../../assets/auth/wordify";
-import GoogleIcon from "../../assets/auth/google";
-import FacebookIcon from "../../assets/auth/facebook";
-import TwitterIcon from "../../assets/auth/twitter";
-import EmailIcon from "../../assets/auth/email";
-import PasswordIcon from "../../assets/auth/password";
-import UserIcon from "../../assets/auth/user";
-import EyeIcon from "../../assets/auth/eye";
-import EyeOffIcon from "../../assets/auth/eyeOff";
+import WordifyIcon from "../../assets/auth/Wordify";
+import GoogleIcon from "../../assets/auth/Google";
+import FacebookIcon from "../../assets/auth/Facebook";
+import TwitterIcon from "../../assets/auth/Twitter";
+import EmailIcon from "../../assets/auth/Email";
+import PasswordIcon from "../../assets/auth/Password";
+import UserIcon from "../../assets/auth/User";
+import EyeIcon from "../../assets/auth/Eye";
+import EyeOffIcon from "../../assets/auth/EyeOff";
 
 import { Context } from "../../Context";
 import {
