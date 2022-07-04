@@ -105,8 +105,8 @@
       align-items: center;
       column-gap: 15px;
       .delete > svg {
-        width: 26px;
-        height: 26px;
+        width: 24px;
+        height: 24px;
         stroke-width: 10;
         stroke: black;
       }
@@ -115,7 +115,6 @@
         justify-content: center;
         align-items: center;
         padding: 5px;
-        color: #2c2c2c;
         border-radius: 50%;
         background-color: white;
         transition: all 200ms ease;

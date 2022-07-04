@@ -1,0 +1,226 @@
+.login-container {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  .left-side {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background: rgba(235, 247, 255, 1);
+    justify-content: center;
+    align-items: center;
+    .login-wrapper {
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      padding: 3rem;
+      border-radius: 20px;
+      background: white;
+      .logo-wrapper {
+        margin-bottom: 6px;
+        display: flex;
+        justify-content: center;
+      }
+      .tagline-wrapper {
+        margin-bottom: 50px;
+        opacity: 0.6;
+        text-align: center;
+      }
+      .login-text-wrapper {
+        margin-bottom: 20px;
+        font-size: 20px;
+        font-weight: 400;
+        text-align: center;
+      }
+      .error {
+        font-size: 12px;
+        color: #ff3333;
+        margin-bottom: 5px;
+        visibility: hidden;
+      }
+
+      .show-error {
+        visibility: visible;
+      }
+
+      .input-wrapper {
+        display: flex;
+        flex-direction: column;
+        div {
+          position: relative;
+          display: flex;
+          align-items: center;
+          margin-bottom: 3px;
+          svg {
+            width: 18px;
+            height: 18px;
+            position: absolute;
+          }
+          svg.email,
+          svg.password,
+          svg.name,
+          svg.otp {
+            left: 14px;
+            color: #72c4ff;
+          }
+          svg.name {
+            width: 20px;
+            height: 20px;
+          }
+          svg.eye {
+            width: 20px;
+            height: 20px;
+            right: 14px;
+            cursor: pointer;
+          }
+          input {
+            width: 100%;
+            padding: 0 43px;
+          }
+        }
+      }
+      .forgot-wrapper {
+        font-size: 12px;
+        display: flex;
+        font-weight: 500;
+        justify-content: space-between;
+        margin-bottom: 25px;
+        a {
+          text-decoration: none;
+          color: rgba(0, 0, 0, 0.6);
+          cursor: pointer;
+          transition: 100ms ease-in-out;
+          &:hover {
+            color: rgba(0, 0, 0, 0.8);
+          }
+        }
+      }
+      .btn-wrapper {
+        button {
+          width: 100%;
+        }
+        margin-bottom: 25px;
+      }
+      .continue-wrapper {
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 13px;
+        text-align: center;
+        margin-bottom: 15px;
+      }
+    }
+  }
+  .social-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 15px;
+    margin-bottom: 25px;
+    a {
+      height: 27px;
+      transition: all 100ms ease;
+      backface-visibility: hidden;
+      &:hover {
+        transform: scale(1.1);
+      }
+      svg {
+        width: 27px;
+        height: 27px;
+      }
+    }
+  }
+  .signup-wrapper {
+    text-align: center;
+    font-size: 14px;
+
+    color: rgba(0, 0, 0, 0.6);
+    a {
+      color: #0496ff;
+      transition: 100ms ease-in-out;
+      &:hover {
+        color: #0581da;
+      }
+    }
+  }
+}
+
+.pw-error {
+  margin-bottom: 25px !important;
+}
+
+.forgot-container {
+  .login-text-wrapper {
+    margin-bottom: 5px !important;
+  }
+  .forgot-send-to {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    span {
+      color: #0496ff;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .login-container {
+    .left-side {
+      background: white;
+      .login-wrapper {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.login-container {
+  input {
+    padding: 0 14px;
+    height: 46px;
+    border: none;
+    font-size: 14px;
+    box-shadow: inset #d8d8da 0 0 0 1px, inset #fff 0 0 0 100px !important;
+    border-radius: 10px;
+    &:hover {
+      box-shadow: inset #b1b0b5 0 0 0 1px, inset #fff 0 0 0 100px !important;
+    }
+    &:focus {
+      outline: none;
+      box-shadow: inset #06f 0 0 0 1px, inset #fff 0 0 0 100px !important;
+    }
+    &::placeholder {
+      color: #4f4e51;
+    }
+  }
+
+  .input-error {
+    box-shadow: inset #ff3333 0 0 0 1px, inset #fff 0 0 0 100px !important;
+  }
+
+  button {
+    background: #0496ff;
+    border-radius: 10px;
+    height: 46px;
+    border: none;
+    font-size: 16px;
+    color: white;
+    padding: 0 21px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background: #0388e7;
+    }
+    &:active {
+      background: #0476c7;
+    }
+  }
+
+  input#name {
+    text-transform: capitalize;
+  }
+
+  input#name::placeholder {
+    text-transform: none;
+  }
+}
