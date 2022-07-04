@@ -19,7 +19,7 @@ export default function Home() {
 
   return (
     <>
-      <MQ minWidth={1000}>
+      <MQ minWidth={1001}>
         <main className="large-screen">
           <SideBar />
           <Outlet />

@@ -8,6 +8,10 @@ export default function ContextProvider(props) {
 
   const [sideBarOpened, setSideBarOpened] = useState(false);
 
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
+  const [content, setContent] = useState("");
+
   const [user, setUser] = useState({});
 
   const [forgotEmail, setForgotEmail] = useState("");
@@ -35,6 +39,12 @@ export default function ContextProvider(props) {
         setFolders,
         sideBarOpened,
         setSideBarOpened,
+        title,
+        setTitle,
+        category,
+        setCategory,
+        content,
+        setContent
       }}
     >
       {props.children}

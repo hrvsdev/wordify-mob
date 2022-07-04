@@ -10,7 +10,7 @@ import "./notes.scss";
 export default function Notes() {
   return (
     <>
-      <MQ minWidth={1000}>
+      <MQ minWidth={1001}>
         <div className="middle-side">
           <div className="folder-name">
             <p>Personal notes</p>

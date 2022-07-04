@@ -9,7 +9,7 @@ import SingleNote from "./pages/single-note";
 export default function App() {
   return (
     <ContextProvider>
-      <MQ minWidth={1000}>
+      <MQ minWidth={1001}>
         <Routes>
           <Route path="/" element={<Home />}>
             <Route path="/" element={<Notes />}>

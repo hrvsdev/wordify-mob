@@ -18,11 +18,8 @@ function Note({ notes, content, children }) {
 }
 
 export function NoteGridLS() {
-  const bind = useLongPress(() => {
-    console.log('Long pressed!');
-  });
   return (
-    <div {...bind()} className="notes-grid-wrapper large-screen">
+    <div className="notes-grid-wrapper large-screen">
       <Note>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore delectus
         nostrum doloribus impedit, neque, rerum odit tempora animi fugit
