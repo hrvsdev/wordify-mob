@@ -1,8 +1,7 @@
-import { useParams, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Folder } from "tabler-icons-react";
 
 export function FolderButton({ _id, name }) {
-  const { note } = useParams();
   return (
     <NavLink to={_id} className="side-button">
       <Folder />
@@ -13,7 +12,7 @@ export function FolderButton({ _id, name }) {
 
 
 export default function Folders({ folders }) {
-  folders.map((e) => {
+  return folders.map((e) => {
     return <FolderButton {...e} key={e._id} />;
   });
 }

@@ -1,14 +1,19 @@
+import { useContext } from "react";
+
 import CreateFolder from "./folders/CreateFolder";
 import Folders from "./folders";
 import { FolderButton } from "./folders";
 
+import { Context } from "../../../Context";
 
 export default function Middle() {
+
+  const {folders} = useContext(Context)
+
   return (
     <div className="middle-sec">
       <FolderButton _id="all" name="All notes" />
-      <FolderButton _id="/personal" name="Personal" />
-      <Folders folders={[]} />
+      <Folders folders={folders} />
       <CreateFolder />
     </div>
   );

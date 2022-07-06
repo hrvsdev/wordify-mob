@@ -8,13 +8,21 @@ import { Context } from "../../Context";
 import "./home.scss";
 
 export default function Home() {
+  // Navigation
   const navigate = useNavigate();
+
+  // Params
   const { folder } = useParams();
 
-  const { sideBarOpened, setSideBarOpened } = useContext(Context);
+  // Context
+  const { sideBarOpened, setSideBarOpened, getUser, getFolders } =
+    useContext(Context);
 
+  // Running on first load
   useEffect(() => {
     if (!folder) navigate("/all");
+    getUser();
+    getFolders();
   }, []);
 
   return (

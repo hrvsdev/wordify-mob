@@ -1,24 +1,32 @@
-import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect } from "react";
 import MQ from "react-responsive";
 
-import { Check, DotsVertical, InfoCircle } from "tabler-icons-react";
+import { Check } from "tabler-icons-react";
 import { AiOutlineDelete } from "react-icons/ai";
 
 import { Context } from "../../../Context";
 import Header from "./Header";
 
 export default function Title() {
-  const { title, setTitle, category, setCategory } = useContext(Context);
 
+  // Navigation
   const navigate = useNavigate();
 
+  // Params
+  const { folder } = useParams();
+
+  // Context
+  const { title, setTitle, category, setCategory, createNote } =
+    useContext(Context);
+
+  // Creating note
   const handleSave = () => {
     setTimeout(() => {
-      navigate(-1);
+      createNote(folder)
     }, 200);
   };
-
+  
   return (
     <>
       <MQ minWidth={1001}>

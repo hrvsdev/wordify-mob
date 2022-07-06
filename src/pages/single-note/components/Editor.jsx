@@ -1,4 +1,5 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
 import { useEditor, EditorContent } from "@tiptap/react";
 import MQ from "react-responsive";
 
@@ -13,13 +14,18 @@ import MenuBar from "./MenuBar";
 import { Context } from "../../../Context";
 
 export default function Editor() {
-  const { content, setContent } = useContext(Context);
+  // Params
+  const { note } = useParams();
+
+  // Context
+  const { content, setContent, editorValue, setEditorValue } =
+    useContext(Context);
 
   const editor = useEditor({
     onUpdate: ({ editor }) => {
       setContent(editor.getHTML());
     },
-    
+
     content: content,
 
     extensions: [
@@ -51,7 +57,9 @@ export default function Editor() {
     if (!editor) {
       return undefined;
     }
-  }, []);
+    editor.commands.setContent(editorValue);
+    setContent(editor.getHTML());
+  }, [editorValue]);
 
   return (
     <>

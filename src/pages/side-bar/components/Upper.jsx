@@ -1,13 +1,18 @@
+import { useContext } from "react";
 import { Avatar } from "@mantine/core";
 import { Search } from "tabler-icons-react";
 
+import { Context } from "../../../Context";
 
 export default function Upper() {
+
+  const {user} = useContext(Context)
+
   return (
     <div className="upper-sec">
       <div className="user-info-wrapper">
-        <Avatar className="user-image" color="blue" />
-        <p className="user-name">Harsh Vyas</p>
+        <Avatar className="user-image" src={user?.picture} />
+        <p className="user-name">{user?.name}</p>
       </div>
       <div className="search-wrapper">
         <Search className="icon" />

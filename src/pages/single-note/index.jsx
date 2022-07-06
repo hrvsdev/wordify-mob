@@ -1,15 +1,28 @@
+import { useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import MQ from "react-responsive";
-import { useContext } from "react";
 
 import Title from "./components/Title";
 import Editor from "./components/Editor";
 
 import { Context } from "../../Context";
-
 import "./single-note.scss";
 
 export default function index() {
-  const {} = useContext(Context);
+  // Navigation
+  const { note } = useParams();
+
+  // Context
+  const { getNote, setTitle, setContent, setCategory } = useContext(Context);
+
+  // Running on first load
+  useEffect(() => {
+    if (note === "add") {
+      setTitle("");
+      setContent("");
+      setCategory("");
+    } else getNote(note);
+  }, [note]);
 
   return (
     <>

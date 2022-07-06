@@ -22,23 +22,23 @@ export default function CreateFolder() {
 
   // Creating a folder
   const createFolder = async () => {
-    // const url = "http://localhost:5000/folder";
-    // const data = { name: folderName.trim() };
-    // try {
-    //   await axios.post(url, data, { withCredentials: true });
-    //   getFolders();
-    // } catch (err: any) {
-    //   console.log(err.response.data);
-    // }
+    const url = "http://localhost:5000/folder";
+    const data = { name: folderName.trim() };
+    try {
+      await axios.post(url, data, { withCredentials: true });
+      getFolders();
+    } catch (err) {
+      console.log(err.response.data);
+    }
   };
 
   // Handling creating a folder
   const handleCreateFolder = () => {
-    // if (folderName.trim()) {
-    //   createFolder();
-    // }
-    // addFolderRef.current && addFolderRef.current.classList.remove("show");
-    // addFolderInputRef.current && addFolderInputRef.current.value = ""
+    if (folderName.trim()) {
+      createFolder();
+    }
+    addFolderRef.current.classList.remove("show");
+    addFolderInputRef.current.value = ""
   };
 
   return (

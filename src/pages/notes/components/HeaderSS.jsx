@@ -1,18 +1,24 @@
 import { useContext } from "react";
+import { useParams } from "react-router-dom";
 import { Search } from "tabler-icons-react";
 import { Menu2 } from "tabler-icons-react";
 
 import { Context } from "../../../Context";
 
 export default function HeaderSS() {
-  const { sideBarOpened, setSideBarOpened } = useContext(Context);
+  // Params
+  const { folder } = useParams();
+
+  // Context
+  const { sideBarOpened, setSideBarOpened, getFolderName } =
+    useContext(Context);
 
   return (
     <header>
       <Menu2 size={28} onClick={() => setSideBarOpened(!sideBarOpened)} />
-      <div className="folder-name">Personal Notes</div>
+      <div className="folder-name">{getFolderName(folder)}</div>
       <div className="search-wrapper">
-        <Search/>
+        <Search />
       </div>
     </header>
   );

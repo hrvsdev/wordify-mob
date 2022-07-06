@@ -47,6 +47,7 @@ export default function Login() {
     if (emailErr) return;
     try {
       const res = await axios.post(url, userData, { withCredentials: true });
+      console.log(res.data)
       setUser(res.data);
       navigate("/");
     } catch (err) {
@@ -72,23 +73,23 @@ export default function Login() {
     const url = "http://localhost:5000/forgot-password";
     const emailErr = isEmailInvalid(email, setEmailError);
     if (emailErr) return;
-    setForgotEmail(email);
-    navigate("/forgot-password");
 
-    // try {
-    //   await axios.post(url, { email: email.trim() });
-    // } catch (err) {
-    //   if (err.response.data.type === "EmailNotFound") {
-    //     setEmailError(true);
-    //     return setLoginErr(err.response.data);
-    //   }
-    // }
+    try {
+      await axios.post(url, { email: email.trim() });
+      setForgotEmail(email);
+      navigate("/forgot-password");
+    } catch (err) {
+      if (err.response.data.type === "EmailNotFound") {
+        setEmailError(true);
+        return setLoginErr(err.response.data);
+      }
+    }
   };
 
   // Show password eye function
   const eyeObj = {
     className: "eye",
-    onClick: (e) => {
+    onClick: () => {
       setShowPassword((prev) => !prev);
     },
   };
