@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {useAuthState} from "react-firebase-hooks/auth"
 import axios from "axios";
 
 import WordifyIcon from "../../assets/auth/Wordify";
@@ -15,6 +16,7 @@ import { Context } from "../../Context";
 import { isEmailInvalid } from "../../utils/auth.utils";
 
 import "./auth.scss";
+import { auth, signInWithFB, signInWithGoogle, signInWithTwitter } from "../../firebase/auth";
 
 export default function Login() {
   // Navigation hook
@@ -94,6 +96,13 @@ export default function Login() {
     },
   };
 
+  // const [user] = useAuthState(auth)
+
+  // useEffect(() => {
+  //   user && console.log(user.email, user.uid, user.displayName)
+  // }, [user])
+  
+
   return (
     <div className="login-container">
       <div className="left-side">
@@ -152,27 +161,27 @@ export default function Login() {
             <p>or continue with</p>
           </div>
           <div className="social-wrapper">
-            <a
+            <div
               title="Google"
-              href="http://localhost:5000/auth/google"
+              onClick={signInWithGoogle}
               className="google"
             >
               <GoogleIcon />
-            </a>
-            <a
+            </div>
+            <div
               title="Facebook"
-              href="http://localhost:5000/auth/facebook"
+              onClick={signInWithFB}
               className="facebook"
             >
               <FacebookIcon />
-            </a>
-            <a
+            </div>
+            <div
               title="Twitter"
-              href="http://localhost:5000/auth/twitter"
+              onClick={signInWithTwitter}
               className="twitter"
             >
               <TwitterIcon />
-            </a>
+            </div>
           </div>
           <div className="signup-wrapper">
             Don't have an account? <Link to="/signup">Sign up</Link>

@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@mantine/core": "^4.2.11",
-    "@tiptap/extension-link": "^2.0.0-beta.43",
     "@tiptap/extension-placeholder": "^2.0.0-beta.53",
     "@tiptap/extension-task-item": "^2.0.0-beta.37",
     "@tiptap/extension-task-list": "^2.0.0-beta.29",
@@ -19,16 +18,16 @@
     "@tiptap/starter-kit": "^2.0.0-beta.190",
     "axios": "^0.27.2",
     "email-validator": "^2.0.4",
-    "prepend-http": "^4.0.0",
+    "firebase": "^9.8.4",
     "randomcolor": "^0.6.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-firebase-hooks": "^5.0.3",
     "react-icons": "^4.4.0",
     "react-masonry-css": "^1.0.16",
     "react-responsive": "^9.0.0-beta.10",
     "react-router-dom": "^6.3.0",
-    "tabler-icons-react": "^1.52.0",
-    "use-long-press": "^2.0.2"
+    "tabler-icons-react": "^1.52.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

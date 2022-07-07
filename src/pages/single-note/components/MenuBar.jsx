@@ -19,17 +19,11 @@ import AlignLeftIcon from "../../../assets/editor/AlignLeft";
 import AlignCenterIcon from "../../../assets/editor/AlignCenter";
 import AlignRightIcon from "../../../assets/editor/AlignRight";
 import AlignJustifyIcon from "../../../assets/editor/AlignJustify";
-import LinkIcon from "../../../assets/editor/Link";
-import UnLinkIcon from "../../../assets/editor/Unlink";
-import CheckIcon from "../../../assets/editor/Check";
 
-import { useRef } from "react";
 import MQ from "react-responsive";
-import prependHttp from "prepend-http";
 
 export default function MenuBar({ editor, dropdownRef }) {
   // Returning if there is no editor instance
-
   if (!editor) return null;
 
   const undo = {
