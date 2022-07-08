@@ -1,9 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { NotificationsProvider,
-  showNotification,
-} from "@mantine/notifications";
+import { NotificationsProvider, showNotification} from "@mantine/notifications";
 
 import WordifyIcon from "../../assets/auth/Wordify";
 import GoogleIcon from "../../assets/auth/Google";

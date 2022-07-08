@@ -1,6 +1,10 @@
 import axios from "axios";
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+
+import { auth } from "../firebase/auth";
+
 export const Context = createContext();
 
 export default function ContextProvider(props) {
@@ -17,7 +21,7 @@ export default function ContextProvider(props) {
   const [editorValue, setEditorValue] = useState("");
 
   // User State
-  const [user, setUser] = useState({});
+  const [user] = useAuthState(auth);
 
   // Folders state
   const [folders, setFolders] = useState([]);
@@ -53,7 +57,7 @@ export default function ContextProvider(props) {
   // Getting notes
   const getNotes = async (folder) => {
     let url;
-    if(!folder) return
+    if (!folder) return;
     else if (folder === "all") url = "http://localhost:5000/notes";
     else url = `http://localhost:5000/${folder}/note`;
     try {
@@ -105,7 +109,6 @@ export default function ContextProvider(props) {
     <Context.Provider
       value={{
         user,
-        setUser,
         getUser,
         forgotEmail,
         setForgotEmail,
@@ -127,7 +130,7 @@ export default function ContextProvider(props) {
         createNote,
         getNote,
         editorValue,
-        setEditorValue
+        setEditorValue,
       }}
     >
       {props.children}

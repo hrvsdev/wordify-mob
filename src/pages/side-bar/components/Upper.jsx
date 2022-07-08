@@ -11,8 +11,8 @@ export default function Upper() {
   return (
     <div className="upper-sec">
       <div className="user-info-wrapper">
-        <Avatar className="user-image" src={user?.picture} />
-        <p className="user-name">{user?.name}</p>
+        <Avatar className="user-image" src={user?.photoURL} />
+        <p className="user-name">{user?.displayName}</p>
       </div>
       <div className="search-wrapper">
         <Search className="icon" />
