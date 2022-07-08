@@ -7,10 +7,12 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
   signInWithEmailAndPassword,
+  sendPasswordResetEmail,
 } from "firebase/auth";
+
 import app from "./config";
 
-// Auth instance
+// Auth Instance
 const auth = getAuth(app);
 
 // Google Auth
@@ -46,10 +48,11 @@ const signInWithTwitter = async () => {
 // Local Auth -  Signup
 const signUpLocal = async (name, email, password) => {
   try {
-    const user = await createUserWithEmailAndPassword(auth, email, password);
-    await updateProfile(user, { displayName: name });
+    const res = await createUserWithEmailAndPassword(auth, email, password);
+    await updateProfile(res.user, { displayName: name });
   } catch (err) {
     console.log(err);
+    return err.code;
   }
 };
 
@@ -59,6 +62,17 @@ const logInLocal = async (email, password) => {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
     console.log(err);
+    return err.code;
+  }
+};
+
+// Local Auth - Reset Password
+const resetPasswordEmail = async (email) => {
+  try {
+    await sendPasswordResetEmail(auth, email)
+  } catch (err) {
+    console.log(err);
+    return err.code;
   }
 };
 
@@ -69,4 +83,5 @@ export {
   signInWithTwitter,
   signUpLocal,
   logInLocal,
+  resetPasswordEmail
 };

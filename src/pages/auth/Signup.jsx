@@ -9,15 +9,22 @@ import TwitterIcon from "../../assets/auth/Twitter";
 import EmailIcon from "../../assets/auth/Email";
 import PasswordIcon from "../../assets/auth/Password";
 import UserIcon from "../../assets/auth/User";
-import EyeIcon from "../../assets/auth/Eye";
-import EyeOffIcon from "../../assets/auth/EyeOff";
 
 import { Context } from "../../Context";
+import { InputError } from "./components/InputError";
+import { PasswordShowAndHide } from "./components/ShowPassword";
 import {
   isEmailInvalid,
   isNameShort,
   isPassWeak,
 } from "../../utils/auth.utils";
+
+import {
+  signInWithFB,
+  signInWithGoogle,
+  signInWithTwitter,
+  signUpLocal,
+} from "../../firebase/auth";
 
 export default function Signup() {
   // Navigation hook
@@ -34,52 +41,41 @@ export default function Signup() {
   // Show password state
   const [showPassword, setShowPassword] = useState(false);
 
-  // Signup response error state
-  const [signupErr, setSignupErr] = useState({});
-
-  // Show error states
-  const [nameShort, setNameShort] = useState(false);
-  const [emailError, setEmailError] = useState(false);
-  const [passwordInsecure, setPasswordInsecure] = useState(false);
-
-  // User data for signup
-  const userData = {
-    name: name.trim(),
-    email: email.trim(),
-    password: password.trim(),
-  };
-
-  // Signup function
-  const handleSignup = async () => {
-    const url = "http://localhost:5000/local/signup";
-    const nameErr = isNameShort(name, setNameShort);
-    const emailErr = isEmailInvalid(email, setEmailError);
-    const passErr = isPassWeak(password, setPasswordInsecure);
-    if (nameErr || emailErr || passErr) return;
-
-    try {
-      const res = await axios.post(url, userData, { withCredentials: true });
-      setUser(res.data.user);
-      navigate("/");
-    } catch (err) {
-      if (err.response.data.type === "EmailExist") setEmailError(true);
-      setSignupErr(err.response.data);
-    }
-  };
+  // Error states
+  const [nameErr, setNameErr] = useState({ state: false, text: "" });
+  const [emailErr, setEmailErr] = useState({ state: false, text: "" });
+  const [passwordErr, setPasswordErr] = useState({ state: false, text: "" });
 
   // Form submission function
   const formSubmit = (e) => {
     e.preventDefault();
-    setSignupErr({});
-    handleSignup();
+
+    setNameErr({ state: false });
+    setEmailErr({ state: false });
+    setPasswordErr({ state: false });
+
+    const nameErrBool = isNameShort(name);
+    const emailErrBool = isEmailInvalid(email);
+    const passErrBool = isPassWeak(password);
+
+    if (emailErrBool || passErrBool || passErrBool) {
+      const nameErrText = "Name must be at least 3 character long";
+      const emailErrText = "Invalid email";
+      const passErrText = "Password should be at least 6 character long";
+
+      setNameErr({ state: nameErrBool, text: nameErrText });
+      setEmailErr({ state: emailErrBool, text: emailErrText });
+      setPasswordErr({ state: passErrBool, text: passErrText });
+    } else handleSignup();
   };
 
-  // Show password eye function
-  const eyeObj = {
-    className: "eye",
-    onClick: () => {
-      setShowPassword((prev) => !prev);
-    },
+  // Handle Login
+  const handleSignup = async () => {
+    const errType = await signUpLocal(name, email, password);
+
+    if (errType === "auth/email-already-in-use") {
+      return setEmailErr({ state: true, text: "Email already in use" });
+    }
   };
 
   return (
@@ -99,7 +95,7 @@ export default function Signup() {
             <div className="name-wrapper">
               <UserIcon className="name" />
               <input
-                className={nameShort ? "input-error" : null}
+                className={nameErr.state ? "input-error" : null}
                 type="text"
                 placeholder="Enter your name"
                 id="name"
@@ -107,33 +103,26 @@ export default function Signup() {
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            <p className={`error ${nameShort ? "show-error" : null}`}>
-              Name is too short
-            </p>
+            <InputError state={nameErr} />
             <div className="email-wrapper">
               <EmailIcon className="email" />
               <input
-                className={emailError ? "input-error" : null}
+                className={emailErr.state ? "input-error" : null}
                 type="email"
                 placeholder="Enter your email"
                 id="email"
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <p className={`error ${emailError ? "show-error" : null}`}>
-              {signupErr.type === "EmailExist"
-                ? "Email is already in use"
-                : "Please enter a valid email"}
-            </p>
+            <InputError state={emailErr} />
             <div className="password-wrapper">
-            <PasswordIcon className="password" />
-              {showPassword ? (
-                <EyeOffIcon {...eyeObj} />
-              ) : (
-                <EyeIcon {...eyeObj} />
-              )}
+              <PasswordIcon className="password" />
+              <PasswordShowAndHide
+                showPassword={showPassword}
+                setShowPassword={setShowPassword}
+              />
               <input
-                className={passwordInsecure ? "input-error" : null}
+                className={passwordErr.state ? "input-error" : null}
                 type={showPassword ? "text" : "password"}
                 placeholder="Create a strong password"
                 spellCheck={false}
@@ -142,13 +131,7 @@ export default function Signup() {
               />
             </div>
           </div>
-          <p
-            className={`pw-error error ${
-              passwordInsecure ? "show-error" : null
-            }`}
-          >
-            Password should be atleast 6 character long
-          </p>
+          <InputError state={passwordErr} />
           <div className="btn-wrapper">
             <button type="submit">Sign up</button>
           </div>
@@ -156,15 +139,19 @@ export default function Signup() {
             <p>or continue with</p>
           </div>
           <div className="social-wrapper">
-            <Link title="Google" to="/connect" className="google">
+            <div title="Google" onClick={signInWithGoogle} className="google">
               <GoogleIcon />
-            </Link>
-            <Link title="Facebook" to="/connect" className="facebook">
+            </div>
+            <div title="Facebook" onClick={signInWithFB} className="facebook">
               <FacebookIcon />
-            </Link>
-            <Link title="Twitter" to="/connect" className="twitter">
+            </div>
+            <div
+              title="Twitter"
+              onClick={signInWithTwitter}
+              className="twitter"
+            >
               <TwitterIcon />
-            </Link>
+            </div>
           </div>
           <div className="signup-wrapper">
             Already have an account? <Link to="/login">Login</Link>

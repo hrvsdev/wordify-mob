@@ -29,9 +29,9 @@ export default function Forgot() {
   const [OTPIncorrect, setOTPIncorrect] = useState(false);
 
   // Checking if user entered the URL manually or redirected
-  useEffect(() => {
-    !forgotEmail && navigate("/login");
-  }, []);
+  // useEffect(() => {
+  //   !forgotEmail && navigate("/login");
+  // }, []);
 
   // OTP and password data
   const OTPData = {

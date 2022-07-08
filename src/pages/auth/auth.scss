@@ -120,6 +120,7 @@
       height: 27px;
       transition: all 100ms ease;
       backface-visibility: hidden;
+      cursor: pointer;
       &:hover {
         transform: scale(1.1);
       }
@@ -169,6 +170,7 @@
     .left-side {
       .login-wrapper {
         box-shadow: none;
+        padding: 0;
       }
     }
   }
