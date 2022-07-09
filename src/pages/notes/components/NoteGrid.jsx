@@ -4,9 +4,9 @@ import Masonry from "react-masonry-css";
 
 import { Context } from "../../../Context";
 
-function Note({ _id, title, content, category }) {
+function Note({ id, title, content, category }) {
   return (
-    <NavLink to={_id} className="note-wrapper">
+    <NavLink to={id} className="note-wrapper">
       <p className="title">{title}</p>
       <p className="description">{content}</p>
       <div className="note-bottom-wrapper">
@@ -20,8 +20,8 @@ function Note({ _id, title, content, category }) {
 function Notes() {
   const { notes } = useContext(Context);
 
-  return notes.map((e) => {
-    return <Note {...e} key={e._id} />;
+  return notes?.docs.map((doc) => {
+    return <Note {...doc.data()} key={doc.id} id={doc.id} />;
   });
 }
 
@@ -46,7 +46,7 @@ export function NoteGridSS() {
       breakpointCols={breakpointColumnsObj}
       className="notes-grid-wrapper small-screen"
     >
-      <Notes/>
+      <Notes />
     </Masonry>
   );
 }

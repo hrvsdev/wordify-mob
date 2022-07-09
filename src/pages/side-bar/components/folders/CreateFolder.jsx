@@ -1,11 +1,16 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import axios from "axios";
 
 import { Folder } from "tabler-icons-react";
 import { FolderPlus } from "tabler-icons-react";
 import { Plus } from "tabler-icons-react";
 
+import { Context } from "../../../../Context";
+import { addFolder } from "../../../../firebase/notes";
+
 export default function CreateFolder() {
+  // Context
+  const { user } = useContext(Context);
 
   // New folder input state
   const [folderName, setFolderName] = useState("");
@@ -16,20 +21,13 @@ export default function CreateFolder() {
 
   // Showing input box for folder
   const addFolderFunc = () => {
-    addFolderRef.current && addFolderRef.current.classList.add("show");
-    addFolderInputRef.current && addFolderInputRef.current.focus();
+    addFolderRef.current.classList.add("show");
+    addFolderInputRef.current.focus();
   };
 
   // Creating a folder
-  const createFolder = async () => {
-    const url = "http://localhost:5000/folder";
-    const data = { name: folderName.trim() };
-    try {
-      await axios.post(url, data, { withCredentials: true });
-      getFolders();
-    } catch (err) {
-      console.log(err.response.data);
-    }
+  const createFolder = () => {
+    addFolder({ name: folderName, user: user.uid });
   };
 
   // Handling creating a folder
@@ -38,7 +36,7 @@ export default function CreateFolder() {
       createFolder();
     }
     addFolderRef.current.classList.remove("show");
-    addFolderInputRef.current.value = ""
+    addFolderInputRef.current.value = "";
   };
 
   return (

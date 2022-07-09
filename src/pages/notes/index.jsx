@@ -27,7 +27,7 @@ export default function Notes() {
       <MQ minWidth={1001}>
         <div className="middle-side">
           <div className="folder-name">
-            <p>{getFolderName(folder)}</p>
+            <p>Random</p>
           </div>
           <NavLink to="add" className="add-note">
             <Plus />

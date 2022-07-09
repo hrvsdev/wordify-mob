@@ -20,9 +20,7 @@ export default function Home() {
 
   // Running on first load
   useEffect(() => {
-    // if (!folder) navigate("/all");
-    // getUser();
-    // getFolders();
+    if (!folder) navigate("/all");
   }, []);
 
   return (

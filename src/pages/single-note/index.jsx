@@ -1,5 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { doc } from "firebase/firestore";
+import { useDocument } from "react-firebase-hooks/firestore";
 import MQ from "react-responsive";
 
 import Title from "./components/Title";
@@ -7,24 +9,36 @@ import Editor from "./components/Editor";
 
 import { Context } from "../../Context";
 import "./single-note.scss";
+import { db } from "../../firebase/notes";
 
 export default function index() {
   // Navigation
   const { note } = useParams();
 
+  // Getting a note
+  const [noteData, loading] = useDocument(doc(db, "notes", note));
+
   // Context
-  const { getNote, setTitle, setContent, setCategory } = useContext(Context);
+  const { setTitle, setEditorValue, setCategory } = useContext(Context);
 
   // Running on first load
   useEffect(() => {
-    if (note === "add") {
-      setTitle("");
-      setContent("");
-      setCategory("");
-    } else getNote(note);
-  }, [note]);
+    const noteMainData = { ...noteData?.data(), id: noteData?.id };
 
-  return (
+    if (note === "all") {
+      setTitle("");
+      setEditorValue("");
+      setCategory("");
+    } else {
+      setTitle(noteMainData.title);
+      setEditorValue(noteMainData.content);
+      setCategory(noteMainData.category);
+    }
+  }, [noteData, note]);
+
+  return loading ? (
+    "Loading ..."
+  ) : (
     <>
       <MQ minWidth={1001}>
         <div className="single-note-wrapper-ls">

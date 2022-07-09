@@ -16,7 +16,7 @@ export default function HeaderSS() {
   return (
     <header>
       <Menu2 size={28} onClick={() => setSideBarOpened(!sideBarOpened)} />
-      <div className="folder-name">{getFolderName(folder)}</div>
+      <div className="folder-name">Random</div>
       <div className="search-wrapper">
         <Search />
       </div>

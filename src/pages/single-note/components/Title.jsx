@@ -7,6 +7,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 
 import { Context } from "../../../Context";
 import Header from "./Header";
+import { addNote } from "../../../firebase/notes";
 
 export default function Title() {
 
@@ -17,13 +18,13 @@ export default function Title() {
   const { folder } = useParams();
 
   // Context
-  const { title, setTitle, category, setCategory, createNote } =
+  const { title, setTitle, category, setCategory, createNote, content } =
     useContext(Context);
 
   // Creating note
   const handleSave = () => {
     setTimeout(() => {
-      createNote(folder)
+      addNote({title, category, content, folder})
     }, 200);
   };
   

@@ -2,8 +2,11 @@ import axios from "axios";
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 import { auth } from "../firebase/auth";
+import { foldersRef, notesRef } from "../firebase/notes";
+import { query, where } from "firebase/firestore";
 
 export const Context = createContext();
 
@@ -23,101 +26,21 @@ export default function ContextProvider(props) {
   // User State
   const [user] = useAuthState(auth);
 
+  // User folders reference
+  const userFoldersRef = query(
+    foldersRef,
+    where("user", "==", user?.uid || "")
+  );
+
   // Folders state
-  const [folders, setFolders] = useState([]);
+  const [folders] = useCollection(userFoldersRef);
 
   // Notes state
-  const [notes, setNotes] = useState([]);
-
-  // Forgot email state
-  const [forgotEmail, setForgotEmail] = useState("");
-
-  // Getting user
-  const getUser = async () => {
-    const url = "http://localhost:5000/user";
-    try {
-      const res = await axios.get(url, { withCredentials: true });
-      setUser(res.data.user);
-    } catch (err) {
-      if (err.response.data.type === "noUser") return navigate("/login");
-    }
-  };
-
-  // Getting folders
-  const getFolders = async () => {
-    const url = "http://localhost:5000/folders";
-    try {
-      const res = await axios.get(url, { withCredentials: true });
-      setFolders(res.data.obj);
-    } catch (err) {
-      console.log(err.response.data);
-    }
-  };
-
-  // Getting notes
-  const getNotes = async (folder) => {
-    let url;
-    if (!folder) return;
-    else if (folder === "all") url = "http://localhost:5000/notes";
-    else url = `http://localhost:5000/${folder}/note`;
-    try {
-      const res = await axios.get(url, { withCredentials: true });
-      return setNotes(res.data.obj);
-    } catch (err) {
-      console.log(err.response.data);
-    }
-  };
-
-  // Getting folder name
-  const getFolderName = (folder) => {
-    for (let i = 0; i < folders.length; i++) {
-      if (folders[i]._id === folder) return folders[i].name;
-      else return "All Notes";
-    }
-  };
-
-  // Creating a note
-  const createNote = async (folder) => {
-    let url;
-    if (folder === "all") url = "http://localhost:5000/note";
-    else url = `http://localhost:5000/${folder}/note`;
-    try {
-      const data = { title, category, content: content };
-      await axios.post(url, data, { withCredentials: true });
-    } catch (err) {
-      console.log(err.response.data);
-    }
-  };
-
-  // Getting a note
-  const getNote = async (note) => {
-    const url = `http://localhost:5000/note/${note}`;
-    if (note && note != "add") {
-      try {
-        const res = await axios.get(url, { withCredentials: true });
-        const note = res.data.obj;
-        setTitle(note.title);
-        setCategory(note.category);
-        setEditorValue(note.content);
-      } catch (err) {
-        console.log(err.response.data);
-      }
-    }
-  };
+  const [notes] = useCollection(notesRef);
 
   return (
     <Context.Provider
       value={{
-        user,
-        getUser,
-        forgotEmail,
-        setForgotEmail,
-        folders,
-        setFolders,
-        getFolders,
-        notes,
-        getNotes,
-        setNotes,
         sideBarOpened,
         setSideBarOpened,
         title,
@@ -126,11 +49,11 @@ export default function ContextProvider(props) {
         setCategory,
         content,
         setContent,
-        getFolderName,
-        createNote,
-        getNote,
         editorValue,
         setEditorValue,
+        user,
+        folders,
+        notes,
       }}
     >
       {props.children}
