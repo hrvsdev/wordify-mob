@@ -17,11 +17,6 @@ export default function Notes() {
   // Params
   const { folder } = useParams();
 
-  // Running on first load and after folder changes
-  useEffect(() => {
-    getNotes(folder);
-  }, [folder]);
-
   return (
     <>
       <MQ minWidth={1001}>

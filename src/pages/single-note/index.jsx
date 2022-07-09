@@ -8,15 +8,16 @@ import Title from "./components/Title";
 import Editor from "./components/Editor";
 
 import { Context } from "../../Context";
-import "./single-note.scss";
 import { db } from "../../firebase/notes";
+
+import "./single-note.scss";
 
 export default function index() {
   // Navigation
   const { note } = useParams();
 
   // Getting a note
-  const [noteData, loading] = useDocument(doc(db, "notes", note));
+  const [noteData] = useDocument(doc(db, "notes", note));
 
   // Context
   const { setTitle, setEditorValue, setCategory } = useContext(Context);
@@ -36,9 +37,7 @@ export default function index() {
     }
   }, [noteData, note]);
 
-  return loading ? (
-    "Loading ..."
-  ) : (
+  return (
     <>
       <MQ minWidth={1001}>
         <div className="single-note-wrapper-ls">

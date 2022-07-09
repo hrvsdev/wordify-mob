@@ -12,15 +12,15 @@ export default function Home() {
   const navigate = useNavigate();
 
   // Params
-  const { folder } = useParams();
+  const { folder, note } = useParams();
 
   // Context
-  const { sideBarOpened, setSideBarOpened, getUser, getFolders } =
-    useContext(Context);
+  const { sideBarOpened, setSideBarOpened } = useContext(Context);
 
   // Running on first load
   useEffect(() => {
-    if (!folder) navigate("/all");
+    if (!folder && !note) return navigate("/all/add");
+    if (folder && !note) return navigate(folder + "/add");
   }, []);
 
   return (
